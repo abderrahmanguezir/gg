@@ -1,0 +1,195 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body">
+        <!-- Card stats -->
+        <div class="row">
+          
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid mt--7">
+    <!-- Table -->
+    <div class="row">
+      <div class="col">
+        <div class="card shadow">
+          <div class="card-header border-0">
+            <h3 class="mb-0"><div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body">
+        <!-- Card stats -->
+        <div class="row">
+          
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid mt--7">
+    <!-- Table -->
+    <div class="row">
+      <div class="col">
+        <div class="card shadow">
+          <div class="card-header border-0">
+            <h3 class="mb-0">Enseignant :</h3>
+          </div>
+          <form [formGroup]="enseignantForm" style="align-items:center">
+            <div class="form-group">
+              <div class="form-group" >
+                <label>Nom</label>
+                <div class="col-sm-8">
+                  <input class="form-control" formControlName="nom" [(ngModel)]="selectedEnseignant.nom"  placeholder="Nom">
+                </div>
+              </div>   
+
+              <div class="form-group">
+                  <label>Prenom</label>
+                  <div class="col-sm-8">
+                    <input class="form-control" formControlName="prenom" [(ngModel)]="selectedEnseignant.prenom"  placeholder="Prenom">
+                  </div>
+                </div> 
+
+                <div class="form-group" >
+                    <label>email</label>
+                    <div class="col-sm-8">
+                      <input class="form-control" formControlName="email" [(ngModel)]="selectedEnseignant.email"  placeholder="Email">
+                    </div>
+                  </div> 
+              
+                <div class="form-group" >
+                  <label>Telephone</label>
+                  <div class="col-sm-8">
+                    <input  class="form-control" formControlName="telephone" [(ngModel)]="selectedEnseignant.telephone"  placeholder="Telephone">
+                  </div>
+
+                <div class="form-group" >
+                    <label>CIN</label>
+                    <div class="col-sm-8">
+                      <input class="form-control" formControlName="cin" [(ngModel)]="selectedEnseignant.cin"  placeholder="CIN">
+                    </div>
+                  </div>   
+
+                  <div class="form-group" >
+                      <label>Adresse</label>
+                      <div class="col-sm-8">
+                        <input class="form-control" formControlName="adresse" [(ngModel)]="selectedEnseignant.adresse"  placeholder="Adresse">
+                      </div>
+                    </div>  
+                  
+                  <div class="form-group" >
+                      <label>Date Naissance</label>
+                      <div class="col-sm-8">
+                        <input type="date" class="form-control" formControlName="dateNaissance" [(ngModel)]="selectedEnseignant.dateNaissance">
+                      </div>
+                  </div>
+
+                  <div class="form-group" >
+                    <label>Matricule</label>
+                    <div class="col-sm-8">
+                      <input class="form-control" formControlName="matricule" [(ngModel)]="selectedEnseignant.matricule"  placeholder="Matricule">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 col-form-label">Departements</label>
+                    <div class="col-sm-8">
+                      <select class="form-control" formControlName="departement" (change)="findDepartementById(selectedEnseignant.departement)"
+                          [(ngModel)]="selectedEnseignant.departement">
+                        <option disabled="disabled">Sélectionnez Departement</option>
+                        <option *ngFor="let departement of departements" [value]="departement.id">{{departement.nom}}</option>
+                      </select>
+                    </div>
+                  </div>
+                
+              </div>
+              <div class="form-group">
+                  <button class="btn btn-primary" (click)="operation == 'add' ? addEnseignant() : updateEnseignant()">
+                      {{operation == 'add' ? 'Ajouter' :
+                      operation == 'edit' ? 'Modifier' : ''}}
+                  </button>
+              </div>
+
+            </div>
+          </form>
+         
+        </div>
+      </div>
+    </div>
+  
+    <!-- Dark table -->
+    <div class="row mt-5">
+      <div class="col">
+        
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="mb-0">Liste du Departements</h3>
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <!-- Projects table -->
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+                <th scope="col">ID</th>
+                <th scope="col">
+                  NOM
+                </th>
+                <th scope="col">
+                  PRENOM
+                </th>
+                <th scope="col">
+                  EMAIL
+                </th>
+                <th scope="col">
+                  TELEPHONE
+                </th>
+                <th scope="col">
+                  CIN
+                </th>
+                <th scope="col">
+                  ADRESSE
+                </th>
+                <th scope="col">
+                  DATENAISSANCE
+                </th>
+                <th scope="col">
+                  MATRICULE
+                </th>
+                <th scope="col">
+                  DEPARTEMENT
+                </th>
+                <th scope="col">
+                  MODIFIER
+                </th>
+                <th scope="col">
+                  SUPPRIMER
+                </th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let enseignant of enseignants">
+                  <td>{{enseignant.id}}</td>
+                  <td>{{enseignant.nom}}</td>
+                  <td>{{enseignant.prenom}}</td>
+                  <td>{{enseignant.email}}</td>
+                  <td>{{enseignant.telephone}}</td>
+                  <td>{{enseignant.cin}}</td>
+                  <td>{{enseignant.adresse}}</td>
+                  <td>{{enseignant.dateNaissance}}</td>
+                  <td>{{enseignant.matricule}}</td>
+                  <td>{{enseignant.departement}}</td>
+                  <td><button class="btn btn-outline-warning"  (click)="selectedEnseignant=enseignant ;operation='edit';">Modifier</button></td>
+                  <td><button class="btn btn-outline-danger" (click)="selectedEnseignant=enseignant ; deleteEnseignant()" >Supprimer</button></td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>

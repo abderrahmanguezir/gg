@@ -1,0 +1,97 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body">
+        <!-- Card stats -->
+        <div class="row">
+          
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid mt--7">
+    <!-- Table -->
+    <div class="row">
+      <div class="col">
+        <div class="card shadow">
+          <div class="card-header border-0">
+            <h3 class="mb-0">Compte :</h3>
+          </div>
+          <form [formGroup]="compteForm" style="align-self:center">
+            <div class="form-group row" style="align-items:center">
+              <label>Password</label>
+              <div class="col-sm-8">
+                <input type="password" class="form-control" formControlName="password" [(ngModel)]="selectedCompte.password"  placeholder="Password">
+              </div>
+            </div>   
+            
+            <div class="form-group row" style="align-items:center">
+              <label>Type</label>
+              <div class="col-sm-8">
+                <input  class="form-control" formControlName="type" [(ngModel)]="selectedCompte.type"  placeholder="Type">
+              </div>
+              
+            </div>
+            <div class="form-group row" style="align-items:center">
+                <button class="btn btn-primary" (click)="operation == 'add' ? addCompte() : updateCompte()">
+                    {{operation == 'add' ? 'Ajouter' :
+                    operation == 'edit' ? 'Modifier' : ''}}
+                </button>
+            </div>
+            </form>
+         
+        </div>
+      </div>
+    </div>
+  
+    <!-- Dark table -->
+    <div class="row mt-5">
+      <div class="col">
+        
+      </div>
+    </div>
+  
+    <div class="col-xl-8 mb-5 mb-xl-0">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="mb-0">Liste du Comptes</h3>
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <!-- Projects table -->
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+                <th scope="col">ID</th>
+                <th scope="col">
+                  PASSWORD
+                </th>
+                <th scope="col">
+                  TYPE
+                </th>
+                <th scope="col">
+                  MODIFIER
+                </th>
+                <th scope="col">
+                  SUPPRIMER
+                </th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let compte of comptes">
+                  <td>{{compte.id}}</td>
+                  <td>{{compte.password}}</td>
+                  <td>{{compte.type}}</td>
+                  <td><button class="btn btn-outline-warning"  (click)="selectedCompte=compte ;operation='edit';">Modifier</button></td>
+                  <td><button class="btn btn-outline-danger" (click)="selectedCompte=compte ; deleteCompte()" >Supprimer</button></td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  
+  
+  </div>
+  

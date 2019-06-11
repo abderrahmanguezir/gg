@@ -1,0 +1,131 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <div class="row">
+        
+        
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h3 class="mb-0"><div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <div class="row">
+        
+        
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h3 class="mb-0">Resultat :</h3>
+        </div>
+        <form [formGroup]="resultatForm" style="align-items:center">
+          <div class="form-group">
+            <div class="form-group" >
+              <label>Note</label>
+              <div class="col-sm-8">
+                <input class="form-control" formControlName="note" [(ngModel)]="selectedResultat.note"  placeholder="Note">
+              </div>
+            </div>   
+
+            <div class="form-group">
+                <label>Qualite</label>
+                <div class="col-sm-8">
+                  <input class="form-control" formControlName="qualite" [(ngModel)]="selectedResultat.qualite"  placeholder="Qualite">
+                </div>
+            </div> 
+
+            <div class="form-group">
+              <label class="col-sm-2 col-form-label">Soutenance</label>
+                <div class="col-sm-8">
+                  <select class="form-control" formControlName="soutenance" (change)="findSoutenanceById(selectedResultat.soutenance)"
+                     [(ngModel)]="selectedResultat.soutenance">
+                    <option disabled="disabled">Sélectionnez Soutenance</option>
+                    <option *ngFor="let soutenance of soutenances" [value]="soutenance.id">{{soutenance.qualite}}</option>
+                  </select>
+              </div>
+            </div>
+              
+            <div class="form-group">
+                <button class="btn btn-primary" (click)="operation == 'add' ? addSoutenance() : updateSoutenance()">
+                    {{operation == 'add' ? 'Ajouter' :
+                    operation == 'edit' ? 'Modifier' : ''}}
+                </button>
+            </div>
+
+          </div>
+        </form>
+       
+      </div>
+    </div>
+  </div>
+
+  <!-- Dark table -->
+  <div class="row mt-5">
+    <div class="col">
+      
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="card shadow">
+      <div class="card-header border-0">
+        <div class="row align-items-center">
+          <div class="col">
+            <h3 class="mb-0">Liste du Soutenances</h3>
+          </div>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <!-- Projects table -->
+        <table class="table align-items-center table-flush">
+          <thead class="thead-light">
+              <th scope="col">
+                ID
+              </th>
+              <th scope="col">
+                NOTE
+              </th>
+              <th scope="col">
+                QUALITE
+              </th>
+              <th scope="col">
+                SOUTENANCE
+              </th>
+              <th scope="col">
+                MODIFIER
+              </th>
+              <th scope="col">
+                SUPPRIMER
+              </th>
+          </thead>
+          <tbody>
+              <tr *ngFor="let resultat of resultats">
+                <td>{{resultat.id}}</td>
+                <td>{{resultat.note}}</td>
+                <td>{{resultat.qualite}}</td>
+                <td>{{resultat.soutenance}}</td>
+                <td><button class="btn btn-outline-warning"  (click)="selectedResultat=resultat ;operation='edit';">Modifier</button></td>
+                <td><button class="btn btn-outline-danger" (click)="selectedResultat=resultat ; deleteResultat()" >Supprimer</button></td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
